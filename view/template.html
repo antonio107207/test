@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="/" method="post">
+        <label for="input">Enter your path here:
+            <input type="text" name="path" id="input" value="">
+        </label>
+        <label for="submit">
+            <input type="submit" id="submit">
+        </label>
+    </form>
+        <div>
+            <h2>You have store to DB:</h2>
+            <span><%-path%></span>
+            <h2><%-message%></h2>
+            <% _.forEach(tree, (value) => {%>
+            <p><%- value%></p>
+            <% })%>
+        </div>
+<% - body %>
+</body>
+</html>

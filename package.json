@@ -1,0 +1,26 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "initDB": "mysql -u root -p < ./model/initDB.sql",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Anton",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "koa": "2.7.0",
+    "koa-bodyparser": "4.2.1",
+    "koa-ejs": "4.2.0",
+    "koa-router": "7.4.0",
+    "lodash": "4.17.11",
+    "mysql2": "1.6.5",
+    "path": "0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
