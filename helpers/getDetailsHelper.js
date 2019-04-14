@@ -7,7 +7,7 @@ const getDetails =  (dir, file, link) => {
     try{
     files = fs.readdirSync(dir);
     } catch (error) {
-        console.log(error);
+       console.error(error)
     }
     for (const index in files) {
         const name = dir + '/' + files[index];
