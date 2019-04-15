@@ -2,11 +2,14 @@ const {saveToDB, getCurrent} = require('../model/dbManager');
 const {getDetails} = require('../helpers/getDetailsHelper');
 const _ = require('lodash');
 
-async function savePathAction(ctx){
-    //-----------------------------------------------------
+async function savePathAction(ctx) {
     await saveToDB(ctx.request.body.path);
+    ctx.redirect('/path')
+}
+
+async function getDetailsAction(ctx) {
     //-----------------------------------------------------
-    const path = await getCurrent(ctx.request.body.path);
+    const path = await getCurrent();
     //-----------------------------------------------------
     const tree = await getDetails(path[0].name);
     //-----------------------------------------------------
@@ -25,4 +28,14 @@ async function savePathAction(ctx){
     await ctx.render('index', viewVariables);
 }
 
-module.exports = {savePathAction};
+async function homePageAction(ctx){
+    const viewVariables = {
+        path: '',
+        message: '',
+        tree: '',
+        _
+    };
+    await ctx.render('homePage', viewVariables);
+}
+
+module.exports = {homePageAction, savePathAction, getDetailsAction};

@@ -1,13 +1,12 @@
 const {execute} = require('../helpers/dbConnect');
 
 async function saveToDB (rout) {
-    console.log(rout);
     const save = `INSERT INTO pathes (name) VALUES ("${rout}")`;
     return await execute(save)
 }
 
-async function getCurrent(rout){
-    const select = `SELECT * FROM pathes WHERE name = "${rout}"`;
+async function getCurrent(){
+    const select = `SELECT name FROM pathes ORDER BY id DESC LIMIT 1`;
     return await execute(select)
 }
 

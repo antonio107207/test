@@ -1,9 +1,10 @@
 const Koa = require('koa');
 const app = new Koa();
-const routes = require('./rout/rout');
+const routs = require('./rout/rout');
 const render = require('koa-ejs');
 const path = require('path');
 const bodyParser = require('koa-bodyparser');
+
 
 render(app, {
     root: path.join(__dirname, 'view'),
@@ -12,9 +13,10 @@ render(app, {
 });
 
 app.use(bodyParser());
-app.use(routes);
+app.use(routs);
 
-const port = process.env.PORT || 4000;
+
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`http://localhost:${port}/`);
 });

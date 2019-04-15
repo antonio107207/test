@@ -11,6 +11,8 @@
   "author": "Anton",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.1.0",
+    "dotenv": "^7.0.0",
     "fs": "0.0.1-security",
     "koa": "2.7.0",
     "koa-bodyparser": "4.2.1",

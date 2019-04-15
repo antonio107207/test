@@ -1,8 +1,13 @@
 const router = require('koa-router')();
-const {savePathAction} = require('../controller/indexController');
+const {homePageAction, savePathAction, getDetailsAction} = require('../controller/indexController');
 
 router
-    .get('/', savePathAction)
-    .post('/', savePathAction);
+    .get('/', homePageAction)
+    .get('/path', getDetailsAction)
+    .post('/save', savePathAction)
+    .all('**', async (ctx) => {
+        ctx.body = 'Page not found';
+        ctx.redirect('/');
+    });
 
 module.exports = router.routes();
