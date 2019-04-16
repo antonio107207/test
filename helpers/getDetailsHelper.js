@@ -1,7 +1,6 @@
 const fs = require('fs');
 
-const getDetails =  (dir, file, link) => {
-    link = link || [];
+const getDetails =  (dir, file) => {
     file = file || [];
     let files;
     try{
@@ -12,14 +11,10 @@ const getDetails =  (dir, file, link) => {
     for (const index in files) {
         const name = dir + '/' + files[index];
         try{
-            if (fs.lstatSync(name).isDirectory()) {
-                getDetails(name, file, link);
-            } else if (fs.lstatSync(name).isFile()){
-                file.push(name);
-            } else if (fs.lstatSync(name).isSymbolicLink()){
-                link.push(name);
+            if (fs.statSync(name).isDirectory()) {
+                getDetails(name, file);
             } else {
-                console.log('Unknown data type!');
+                file.push(name);
             }
         } catch (error) {
             return error;
