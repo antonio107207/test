@@ -5,4 +5,5 @@ USE FS;
 CREATE TABLE IF NOT EXISTS pathes (
 id INT(4) AUTO_INCREMENT PRIMARY KEY,
 directory VARCHAR(255),
-file VARCHAR(255), parent INT (4));
+file VARCHAR(255),
+parent INT (4));

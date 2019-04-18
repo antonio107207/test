@@ -1,12 +1,19 @@
-const {getDetails} = require('../helpers/getDetailsHelper');
+const {getDetails, showDetails} = require('../helpers/getDetailsHelper');
 const _ = require('lodash');
 
-async function savePathAction(ctx) {
-    await getDetails(ctx.request.body.path);
-    ctx.redirect('/')
+async function showFilesAction(ctx) {
+    const data = await showDetails(1);
+    const viewVariables = {
+        path: '',
+        message: '',
+        tree: data,
+        _
+    };
+    console.log(data);
+    await ctx.render('index',viewVariables)
 }
 
-async function getDetailsAction(ctx) {
+async function getFilesAction(ctx) {
     const tree = await getDetails(ctx.request.body.path);
     console.log('tree', tree);
     ctx.redirect('/')
@@ -22,4 +29,4 @@ async function homePageAction(ctx){
     await ctx.render('homePage', viewVariables);
 }
 
-module.exports = {homePageAction, savePathAction, getDetailsAction};
+module.exports = {homePageAction, getFilesAction, showFilesAction};
