@@ -1,5 +1,5 @@
 const fs = require('fs');
-const {saveToDB, getFromDB, getParentId, getAllDir} = require('../model/dbManager');
+const {saveToDB} = require('../model/dbManager');
 
 const getDetails =  async (dir, file, id) => {
     file = file || [];
@@ -28,9 +28,4 @@ const getDetails =  async (dir, file, id) => {
     }
 };
 
-const showDetails = async (name) =>{
-    const id = await getParentId('Parent');
-    return await getFromDB(id[0].id);
-};
-
-module.exports = {getDetails, showDetails};
+module.exports = {getDetails};

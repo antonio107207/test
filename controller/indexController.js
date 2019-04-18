@@ -1,28 +1,35 @@
-const {getDetails, showDetails} = require('../helpers/getDetailsHelper');
+const {getDetails} = require('../helpers/getDetailsHelper');
+const {clearDB, getFromDB} = require('../model/dbManager');
 const _ = require('lodash');
 
 async function showFilesAction(ctx) {
-    const data = await showDetails(1);
+    const data = await getFromDB(1);
+    // const value = _.keyBy(data, ({parent}) => parent);
+    // const keys = Object.keys(value);
+    //
+    // console.log(
+    //     keys.forEach(key => {
+    //         console.log(`Directory ${key}`);
+    //     data.forEach(value=>{
+    //     if(value.parent == key){
+    //         console.log(`file ${value.file}`);
+    //     }
+    // })}));
     const viewVariables = {
-        path: '',
-        message: '',
         tree: data,
         _
     };
-    console.log(data);
     await ctx.render('index',viewVariables)
 }
 
 async function getFilesAction(ctx) {
-    const tree = await getDetails(ctx.request.body.path);
-    console.log('tree', tree);
+    await clearDB();
+    await getDetails(ctx.request.body.path);
     ctx.redirect('/')
 }
 
 async function homePageAction(ctx){
     const viewVariables = {
-        path: '',
-        message: '',
         tree: '',
         _
     };

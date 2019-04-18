@@ -5,11 +5,6 @@ async function saveToDB (dir, file, id) {
     return await execute(save)
 }
 
-async function getParentId(name){
-    const select = `SELECT id FROM pathes WHERE directory="${name}" AND file=""`;
-    return await execute(select)
-}
-
 async function getFromDB(id){
     const select = `WITH RECURSIVE temp_table (id, directory, file, parent) AS 
     (SELECT id, directory, file, parent
@@ -22,4 +17,9 @@ async function getFromDB(id){
     return await execute(select);
 }
 
-module.exports={saveToDB, getFromDB, getParentId};
+async function clearDB(){
+    const clear = `TRUNCATE TABLE pathes;`;
+    return await execute(clear);
+}
+
+module.exports={saveToDB, getFromDB, clearDB};
