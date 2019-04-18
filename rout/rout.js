@@ -3,8 +3,8 @@ const {homePageAction, savePathAction, getDetailsAction} = require('../controlle
 
 router
     .get('/', homePageAction)
-    .get('/path', getDetailsAction)
-    .post('/save', savePathAction)
+    //.get('/files', getDetailsAction)
+    .post('/files', getDetailsAction)
     .all('**', async (ctx) => {
         ctx.body = 'Page not found';
         ctx.redirect('/');

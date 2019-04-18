@@ -1,7 +1,10 @@
 const fs = require('fs');
+const {saveToDB} = require('../model/dbManager');
 
 const getDetails =  (dir, file) => {
     file = file || [];
+    saveToDB(dir);
+    console.log('dir', dir);
     let files;
     try{
     files = fs.readdirSync(dir);
@@ -14,24 +17,13 @@ const getDetails =  (dir, file) => {
             if (fs.statSync(name).isDirectory()) {
                 getDetails(name, file);
             } else {
-                file.push(name);
+                saveToDB (dir, files[index]);
+                file.push(files[index]);
             }
         } catch (error) {
             return error;
         }
     }
-    return file;
 };
-
-// async function getPath(data) {
-//     const road = data.split('/');
-//     let currentRoad = '/';
-//     let roads = [];
-//     for (let index = 0; index < road.length; index++) {
-//         currentRoad = currentRoad === '/' ? currentRoad + road[index] : currentRoad + '/' + road[index];
-//         roads.push(currentRoad);
-//     }
-//     return roads;
-// }
 
 module.exports = {getDetails};

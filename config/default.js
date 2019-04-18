@@ -6,7 +6,7 @@ module.exports = {
                 "host": "localhost",
                 "user": "root",
                 "password": `${process.env.DB_PASS}`,
-                "database": "routes"
+                "database": "FS"
             }
         }
 };
